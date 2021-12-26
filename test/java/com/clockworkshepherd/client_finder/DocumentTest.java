@@ -1,4 +1,4 @@
-package example;
+package com.clockworkshepherd.client_finder;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.junit.jupiter.api.Test;
