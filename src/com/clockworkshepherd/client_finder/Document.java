@@ -22,20 +22,29 @@ public class Document {
         this.path = path;
         this.document = PDDocument.load(path.toFile());
         this.encrypted = document.isEncrypted();
+
         stripper.setSortByPosition(true);
-
-        if (encrypted) {
-            text = "";
-            lines = new ArrayList<>();
-        } else {
-            text = stripper.getText(document);
-            lines = List.of(text.split(System.lineSeparator()));
-        }
-
+        setProperties();
         document.close();
     }
 
-//    private get
+    private void setProperties() throws IOException {
+        if (encrypted) {
+            setEmptyProperties();
+        } else {
+            setPropertiesFromDocument();
+        }
+    }
+
+    private void setEmptyProperties() {
+        text = "";
+        lines = new ArrayList<>();
+    }
+
+    private void setPropertiesFromDocument() throws IOException {
+        text = stripper.getText(document);
+        lines = List.of(text.split(System.lineSeparator()));
+    }
 
     public Path getPath() {
         return path;
