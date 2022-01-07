@@ -1,29 +1,24 @@
 package com.clockworkshepherd.client_finder;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 public class JudgingPlanTextClassifier {
+    final static Pattern judgingStartTmePattern = Pattern.compile("\\d{2}.\\d{2}");
+    final static String RING = "Ring";
+    final static String JUDGE = "Sędzia";
+    final static String SEX_MALE = "Psy";
+    final static String SEX_FEMALE = "Suki";
+
     HashMap<Object, Boolean> textClassificationMap;
-    Pattern judgingStartTmePattern = Pattern.compile("\\d{2}.\\d{2}");
     List<String> competitions;
     List<String> breeds;
 
     public JudgingPlanTextClassifier(List<String> competitions, List<String> breeds) {
         this.competitions = competitions;
         this.breeds = breeds;
-    }
-
-    private void initializeClassificationMap() {
-        Arrays.asList(textClasses.values()).forEach(textClass -> textClassificationMap.put(textClass, false));
-    }
-
-    private void restClassificationMap() {
-        this.textClassificationMap = new HashMap<>();
-        initializeClassificationMap();
     }
 
     public textClasses classify(String input) {
@@ -41,10 +36,14 @@ public class JudgingPlanTextClassifier {
         textClassificationMap.put(textClasses.COMPETITION, isCompetition(input));
     }
 
+    private void restClassificationMap() {
+        this.textClassificationMap = new HashMap<>();
+    }
+
     private textClasses getMappingResult() {
-        textClasses result = textClasses.UNDEFINED;
         int trueValuesCount = countTrueValuesInClassificationMap();
 
+        textClasses result = textClasses.UNDEFINED;
         if (trueValuesCount > 1) {
             result = textClasses.AMBIGUOUS;
         } else if (trueValuesCount == 1) {
@@ -52,6 +51,14 @@ public class JudgingPlanTextClassifier {
         }
 
         return result;
+    }
+
+    private int countTrueValuesInClassificationMap() {
+        int sum = 0;
+        for (boolean value : textClassificationMap.values()) {
+            sum += value ? 1 : 0;
+        }
+        return sum;
     }
 
     private Object getKeyOfClassMapWhereValueIsTrue() {
@@ -64,20 +71,12 @@ public class JudgingPlanTextClassifier {
                 .get();
     }
 
-    private int countTrueValuesInClassificationMap() {
-        int sum = 0;
-        for (boolean value : textClassificationMap.values()) {
-            sum += value ? 1 : 0;
-        }
-        return sum;
-    }
-
     private boolean isRingHeader(String input) {
-        return input.contains("Ring");
+        return input.contains(RING);
     }
 
     private boolean isJudge(String input) {
-        return input.contains("Sędzia");
+        return input.contains(JUDGE);
     }
 
     private boolean isStartTime(String input) {
@@ -85,7 +84,7 @@ public class JudgingPlanTextClassifier {
     }
 
     private boolean isSex(String input) {
-        return input.contains("Psy") || input.contains("Suki");
+        return input.contains(SEX_MALE) || input.contains(SEX_FEMALE);
     }
 
     private boolean isBreed(String input) {
