@@ -1,5 +1,8 @@
 package com.clockworkshepherd.client_finder;
 
+import com.clockworkshepherd.client_finder.JudgingPlan.JudgingPlanTextClassifier;
+import com.clockworkshepherd.client_finder.JudgingPlan.JudgingPlanTextClassifierBuilder;
+import com.clockworkshepherd.client_finder.JudgingPlan.textClasses;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

@@ -1,4 +1,6 @@
-package com.clockworkshepherd.client_finder;
+package com.clockworkshepherd.client_finder.JudgingPlan;
+
+import com.clockworkshepherd.client_finder.Document;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +9,7 @@ public class RingExtractor {
     Document document;
     List<Ring> ringList = new ArrayList<>();
 
-    RingExtractor(Document document) {
+    public RingExtractor(Document document) {
         this.document = document;
     }
 

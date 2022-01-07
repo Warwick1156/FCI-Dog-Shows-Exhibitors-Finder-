@@ -35,6 +35,8 @@ public class Document {
         document.close();
     }
 
+//    private get
+
     public Path getPath() {
         return path;
     }

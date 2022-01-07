@@ -1,8 +1,7 @@
 package com.clockworkshepherd.client_finder;
 
+import com.clockworkshepherd.client_finder.JudgingPlan.RingExtractor;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class RingExtractorTest {
 

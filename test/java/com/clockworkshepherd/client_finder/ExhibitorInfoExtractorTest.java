@@ -1,5 +1,6 @@
 package com.clockworkshepherd.client_finder;
 
+import com.clockworkshepherd.client_finder.Exhibitors.ExhibitorInfoExtractor;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

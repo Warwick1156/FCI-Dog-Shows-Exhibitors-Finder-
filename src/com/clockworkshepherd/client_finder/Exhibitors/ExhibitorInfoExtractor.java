@@ -1,4 +1,4 @@
-package com.clockworkshepherd.client_finder;
+package com.clockworkshepherd.client_finder.Exhibitors;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ public class ExhibitorInfoExtractor {
     public static final String WHITESPACE = " ";
     public static final String DASH = "-";
 
-    ExhibitorInfoExtractor() {
+    public ExhibitorInfoExtractor() {
 
     }
 

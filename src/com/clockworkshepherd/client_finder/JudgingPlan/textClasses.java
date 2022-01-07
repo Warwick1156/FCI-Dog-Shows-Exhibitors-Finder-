@@ -1,4 +1,4 @@
-package com.clockworkshepherd.client_finder;
+package com.clockworkshepherd.client_finder.JudgingPlan;
 
 public enum textClasses {
     RING_HEADER,

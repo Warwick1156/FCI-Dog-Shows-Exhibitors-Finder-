@@ -1,4 +1,4 @@
-package com.clockworkshepherd.client_finder;
+package com.clockworkshepherd.client_finder.Exhibitors;
 
 import java.util.ArrayList;
 import java.util.HashMap;

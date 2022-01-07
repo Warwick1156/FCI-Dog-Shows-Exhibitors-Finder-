@@ -1,7 +1,8 @@
-package com.clockworkshepherd.client_finder;
+package com.clockworkshepherd.client_finder.Exhibitors;
 
 import java.util.*;
 
+import com.clockworkshepherd.client_finder.Document;
 import org.apache.pdfbox.pdmodel.PDDocument;
 
 
