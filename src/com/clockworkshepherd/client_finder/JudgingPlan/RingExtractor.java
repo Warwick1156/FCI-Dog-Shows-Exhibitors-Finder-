@@ -1,7 +1,5 @@
 package com.clockworkshepherd.client_finder.JudgingPlan;
 
-import com.clockworkshepherd.client_finder.Document;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +9,14 @@ public class RingExtractor {
 
     }
 
-    public List<Ring> extract(Document document) {
+    public List<Ring> extract(List<String> rows) throws IOException {
+        List<TextLine> classifiedRows = classify(rows);
+        classifiedRows = removeUndefined(classifiedRows);
 
         return new ArrayList<>();
     }
 
-    public List<TextLine> classifyRows(List<String> rows) throws IOException {
+    protected List<TextLine> classify(List<String> rows) throws IOException {
         JudgingPlanKnownNames knownNames = new JudgingPlanKnownNames();
         JudgingPlanTextClassifier classifier = new JudgingPlanTextClassifierBuilder()
                 .breeds(knownNames.breeds)
@@ -25,9 +25,11 @@ public class RingExtractor {
 
         List<TextLine> classifiedLines = new ArrayList<>();
         rows.forEach(line -> classifiedLines.add(new TextLine(line, classifier.classify(line))));
+
         return classifiedLines;
     }
 
-
-
+    protected List<TextLine> removeUndefined(List<TextLine> textLines) {
+        return textLines.stream().filter(line -> line.textClass != textClasses.UNDEFINED).toList();
+    }
 }

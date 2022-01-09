@@ -4,6 +4,7 @@ import com.clockworkshepherd.client_finder.Document;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +18,7 @@ class RingExtractorTest {
     @Test
     void extractReturnType() throws IOException {
         RingExtractor extractor = new RingExtractor();
-        assertThat(extractor.extract(null), instanceOf(List.class));
+        assertThat(extractor.extract(new ArrayList<>()), instanceOf(List.class));
     }
 
     @Test
@@ -32,21 +33,11 @@ class RingExtractorTest {
                 "Klasa młodzieży - Junior Class 1 607)"
         );
 
-        List<TextLine> expected = Arrays.asList(
-                new TextLine("Ring: 1 Hala: 3 Sobota / Saturday Razem: 79", textClasses.RING_HEADER),
-                new TextLine("Sędzia: Jarosław Grunt (PL)", textClasses.JUDGE),
-                new TextLine("10.00", textClasses.BREED_JUDGING_START_TIME),
-                new TextLine("Cao Fila de Sao Miguel    (1)", textClasses.BREED_NAME_PL),
-                new TextLine("Saint Miguel Cattle Dog", textClasses.UNDEFINED),
-                new TextLine("Psy - Males", textClasses.SEX),
-                new TextLine("Klasa młodzieży - Junior Class 1 607)", textClasses.COMPETITION)
-        );
-
-        List<textClasses> expectedClasses = expected.stream().map(TextLine::getTextClass).toList();
-
         RingExtractor extractor = new RingExtractor();
-//        List<textClasses> actualClasses = extractor.classifyDocumentRows(rows).stream().map(TextLine::getTextClass).toList();
-        List<textClasses> actualClasses = Arrays.asList(
+        List<TextLine> actual = extractor.classify(rows);
+        List<textClasses> actualClasses = actual.stream().map(TextLine::getTextClass).toList();
+
+        List<textClasses> expectedClasses = Arrays.asList(
                 textClasses.RING_HEADER,
                 textClasses.JUDGE,
                 textClasses.BREED_JUDGING_START_TIME,
@@ -55,6 +46,22 @@ class RingExtractorTest {
                 textClasses.SEX,
                 textClasses.COMPETITION
                 );
+
+        assertEquals(expectedClasses, actualClasses);
+    }
+
+    @Test
+    void removeUndefined() {
+        RingExtractor extractor = new RingExtractor();
+        List<TextLine> input = Arrays.asList(
+                new TextLine("", textClasses.RING_HEADER),
+                new TextLine("", textClasses.UNDEFINED),
+                new TextLine("", textClasses.SEX)
+        );
+
+        List<textClasses> expectedClasses = Arrays.asList(textClasses.RING_HEADER, textClasses.SEX);
+        List<textClasses> actualClasses = extractor.removeUndefined(input).stream().map(TextLine::getTextClass).toList();
+
         assertEquals(expectedClasses, actualClasses);
     }
 }
