@@ -23,23 +23,4 @@ public class Breed {
         females.add(competitionClass);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getEngName() {
-        return engName;
-    }
-
-    public int getTotalDogsInBreed() {
-        return totalDogsInBreed;
-    }
-
-    public List<CompetitionClass> getMales() {
-        return males;
-    }
-
-    public List<CompetitionClass> getFemales() {
-        return females;
-    }
 }

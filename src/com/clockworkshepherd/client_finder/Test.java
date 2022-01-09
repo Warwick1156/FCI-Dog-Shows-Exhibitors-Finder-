@@ -1,5 +1,7 @@
 package com.clockworkshepherd.client_finder;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,9 +21,9 @@ public class Test {
 //        String text = stripper.getText(document);
 //        System.out.println(stripper.getText(document));
 
-        Path input = Paths.get("./input/plan.pdf");
-        Document document = new Document(input);
-        System.out.println(document.getText());
+//        Path input = Paths.get("./input/plan.pdf");
+//        Document document = new Document(input);
+//        System.out.println(document.getText());
 
     }
 }

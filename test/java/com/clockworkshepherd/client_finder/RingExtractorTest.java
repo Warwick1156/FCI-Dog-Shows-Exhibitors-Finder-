@@ -7,7 +7,7 @@ class RingExtractorTest {
 
     @Test
     void isRingHeader() {
-        RingExtractor ringExtractor = new RingExtractor(null);
+        RingExtractor ringExtractor = new RingExtractor();
         String input = null;
     }
 }

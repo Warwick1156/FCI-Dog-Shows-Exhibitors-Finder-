@@ -42,7 +42,7 @@ public class Exhibitor {
     String key;
     List<Integer> startNumbers = new ArrayList<>();
 
-    Exhibitor(String firstName, String surname, String lastName, String country, String startNumber, String key) {
+    public Exhibitor(String firstName, String surname, String lastName, String country, String startNumber, String key) {
         this.firstName = firstName;
         this.surname = surname;
         this.lastName = lastName;

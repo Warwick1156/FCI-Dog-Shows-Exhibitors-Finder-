@@ -8,4 +8,8 @@ public class TextLine {
         this.text = text;
         this.textClass = textClass;
     }
+
+    public textClasses getTextClass() {
+        return textClass;
+    }
 }

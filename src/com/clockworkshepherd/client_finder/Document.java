@@ -18,7 +18,7 @@ public class Document {
     PDFTextStripper stripper = new PDFTextStripper();
 
 
-    Document(Path path) throws IOException {
+    public Document(Path path) throws IOException {
         this.path = path;
         this.document = PDDocument.load(path.toFile());
         this.encrypted = document.isEncrypted();
