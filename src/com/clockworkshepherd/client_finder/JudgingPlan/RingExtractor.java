@@ -12,7 +12,7 @@ public class RingExtractor {
     public List<Ring> extract(List<String> rows) throws IOException {
         List<TextLine> classifiedRows = classify(rows);
         classifiedRows = removeUndefined(classifiedRows);
-//        TODO: log ambigious rows
+//        TODO: log ambiguous rows
 
         return new ArrayList<>();
     }
