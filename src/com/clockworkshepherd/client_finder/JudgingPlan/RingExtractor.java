@@ -12,6 +12,7 @@ public class RingExtractor {
     public List<Ring> extract(List<String> rows) throws IOException {
         List<TextLine> classifiedRows = classify(rows);
         classifiedRows = removeUndefined(classifiedRows);
+//        TODO: log ambigious rows
 
         return new ArrayList<>();
     }
@@ -31,5 +32,17 @@ public class RingExtractor {
 
     protected List<TextLine> removeUndefined(List<TextLine> textLines) {
         return textLines.stream().filter(line -> line.textClass != textClasses.UNDEFINED).toList();
+    }
+
+
+    protected List<Ring> constructRingsFromClassifiedText(List<TextLine> classifiedText) {
+        List<Ring> ringList = new ArrayList<>();
+
+        RingHeaderIterator iterator = new RingHeaderIterator(classifiedText);
+        while (iterator.hasNext()) {
+            ringList.add(new RingFromClassifiedText(iterator.next()).build());
+        }
+
+        return ringList;
     }
 }
