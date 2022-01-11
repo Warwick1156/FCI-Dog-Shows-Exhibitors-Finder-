@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ExhibitorInfoExtractorTest {
 
     @Test
-    void getInfo_case_1() {
+    void getInfoNameWithSurname() {
         ExhibitorInfoExtractor extractor = new ExhibitorInfoExtractor();
 
         String input = "Aaltovirta Maria Seija Helenius- Finlandia 1942";
@@ -26,7 +26,7 @@ class ExhibitorInfoExtractorTest {
     }
 
     @Test
-    void getInfo_case_2() {
+    void getInfoNameWithoutSurname() {
         ExhibitorInfoExtractor extractor = new ExhibitorInfoExtractor();
 
         String input = "Adamczyk Andrzej - Polska 1715";
@@ -42,7 +42,7 @@ class ExhibitorInfoExtractorTest {
     }
 
     @Test
-    void getInfo_case_3() {
+    void getInfoDoubleLastName() {
         ExhibitorInfoExtractor extractor = new ExhibitorInfoExtractor();
 
         String input = "Andrzejczak-Wagner Małgorzata - Polska 71";
@@ -58,7 +58,7 @@ class ExhibitorInfoExtractorTest {
     }
 
     @Test
-    void getInfo_case_4() {
+    void getInfoThreePartCountryName() {
         ExhibitorInfoExtractor extractor = new ExhibitorInfoExtractor();
 
         String input = "Vulic Dusko - Bośnia i Hercegowina 1840";
@@ -74,7 +74,7 @@ class ExhibitorInfoExtractorTest {
     }
 
     @Test
-    void getInfo_case_5() {
+    void getInfoDoubleLastNameWithThreePartCountryName() {
         ExhibitorInfoExtractor extractor = new ExhibitorInfoExtractor();
 
         String input = "Andrzejczak-Wagner Dusko - Bośnia i Hercegowina 1840";
@@ -90,7 +90,7 @@ class ExhibitorInfoExtractorTest {
     }
 
     @Test
-    void getInfo_case_6() {
+    void getInfoDoubleFirstName() {
         ExhibitorInfoExtractor extractor = new ExhibitorInfoExtractor();
 
         String input = "Adler Lise-Lotte - Dania 1639";
@@ -106,7 +106,7 @@ class ExhibitorInfoExtractorTest {
     }
 
     @Test
-    void getInfo_case_7() {
+    void getInfoFirstNameIsPartOfLastName() {
         ExhibitorInfoExtractor extractor = new ExhibitorInfoExtractor();
 
         String input = "Andrzejewski Andrzej - Polska 288";

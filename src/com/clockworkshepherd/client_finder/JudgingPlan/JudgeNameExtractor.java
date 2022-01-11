@@ -3,7 +3,7 @@ package com.clockworkshepherd.client_finder.JudgingPlan;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JudgeExtractor {
+public class JudgeNameExtractor {
     private final static String WHITESPACE = " ";
     private final static int MINIMAL_LIST_SIZE = 3;
 

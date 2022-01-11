@@ -21,7 +21,7 @@ public class RingFromClassifiedText {
 
     protected void setJudge() {
         TextLine judge = getJudgeTextLine();
-        ringBuilder.judge(judge.text);
+        ringBuilder.judge(new JudgeNameExtractor().extract(judge.text));
     }
 
     protected TextLine getJudgeTextLine() {
