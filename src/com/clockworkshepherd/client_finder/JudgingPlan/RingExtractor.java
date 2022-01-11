@@ -10,11 +10,11 @@ public class RingExtractor {
     }
 
     public List<Ring> extract(List<String> rows) throws IOException {
+        //        TODO: log ambiguous rows
         List<TextLine> classifiedRows = classify(rows);
         classifiedRows = removeUndefined(classifiedRows);
-//        TODO: log ambiguous rows
 
-        return new ArrayList<>();
+        return constructRingsFromClassifiedText(classifiedRows);
     }
 
     protected List<TextLine> classify(List<String> rows) throws IOException {

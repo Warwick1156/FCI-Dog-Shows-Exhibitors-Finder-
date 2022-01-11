@@ -22,6 +22,27 @@ class RingExtractorTest {
     }
 
     @Test
+    void extractReturnedRingHasRightJudge() throws IOException {
+        List<String> rows = Arrays.asList(
+                "Ring: 1 Hala: 3 Sobota / Saturday Razem: 79",
+                "Sędzia: Jarosław Grunt (PL)",
+                "10.00",
+                "Cao Fila de Sao Miguel    (1)",
+                "Saint Miguel Cattle Dog",
+                "Psy - Males",
+                "Klasa młodzieży - Junior Class 1 607)"
+        );
+
+        RingExtractor extractor = new RingExtractor();
+        List<Ring> ringList = extractor.extract(rows);
+
+        String expected = "Jarosław Grunt";
+        String actual = ringList.get(0).judge;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void classifyDocumentRows() throws IOException {
         List<String> rows = Arrays.asList(
                 "Ring: 1 Hala: 3 Sobota / Saturday Razem: 79",

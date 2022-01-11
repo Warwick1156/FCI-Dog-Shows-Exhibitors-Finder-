@@ -12,7 +12,7 @@ public class RingFromClassifiedText {
     }
 
     public Ring build() {
-        return new RingBuilder().build();
+        return ringBuilder.build();
     }
 
     protected void setJudge() {
