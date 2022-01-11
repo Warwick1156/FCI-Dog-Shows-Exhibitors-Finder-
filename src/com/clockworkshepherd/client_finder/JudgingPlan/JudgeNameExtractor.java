@@ -7,16 +7,20 @@ public class JudgeNameExtractor {
     private final static String WHITESPACE = " ";
     private final static int MINIMAL_LIST_SIZE = 3;
 
-    public String extract(String input) {
+    public String extract(List<TextLine> input) {
         return getJudgeFullName(input);
     }
 
-
-    protected String getJudgeFullName(String input) {
-        List<String> splitInput = List.of(input.split(WHITESPACE));
-        List<String> name = getName(splitInput);
+    protected String getJudgeFullName(List<TextLine> input) {
+        TextLine judge = getJudgeTextLine(input);
+        List<String> splitJudge = List.of(judge.text.split(WHITESPACE));
+        List<String> name = getName(splitJudge);
 
         return String.join(WHITESPACE, name);
+    }
+
+    protected TextLine getJudgeTextLine(List<TextLine> input) {
+        return TextLineListFilter.find(input, textClasses.JUDGE);
     }
 
     protected List<String> getName(List<String> input) {
