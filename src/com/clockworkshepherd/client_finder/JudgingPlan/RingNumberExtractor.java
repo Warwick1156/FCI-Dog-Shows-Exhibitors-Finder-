@@ -20,11 +20,15 @@ public class RingNumberExtractor {
 
         if (indexOfRingIndicator < splitText.size() - 1) {
             String stringRingNumber = splitText.get(indexOfRingIndicator + 1);
-            if (stringRingNumber.matches("\\d+")) {
+            if (isParsable(stringRingNumber)) {
                 ringNumber = Integer.parseInt(stringRingNumber);
             }
         }
 
         return ringNumber;
+    }
+
+    private boolean isParsable(String string) {
+        return string.matches("\\d+");
     }
 }

@@ -22,4 +22,11 @@ class RingNumberExtractorTest {
 
         assertEquals(2, new RingNumberExtractor().extract(input));
     }
+
+    @Test
+    void extractMinimumTextLineSize() {
+        List<TextLine> input = List.of(new TextLine("Ring: 2", textClasses.RING_HEADER));
+
+        assertEquals(2, new RingNumberExtractor().extract(input));
+    }
 }
