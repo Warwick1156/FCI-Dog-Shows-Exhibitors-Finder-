@@ -32,7 +32,7 @@ public class JudgingPlanTextClassifier {
         textClassificationMap.put(textClasses.JUDGE, isJudge(input));
         textClassificationMap.put(textClasses.BREED_JUDGING_START_TIME, isStartTime(input));
         textClassificationMap.put(textClasses.SEX, isSex(input));
-        textClassificationMap.put(textClasses.BREED_NAME_PL, isBreed(input));
+        textClassificationMap.put(textClasses.BREED_NAME, isBreed(input));
         textClassificationMap.put(textClasses.COMPETITION, isCompetition(input));
     }
 

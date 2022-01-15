@@ -89,7 +89,7 @@ class JudgingPlanTextClassifierTest {
         String input = "Ciobanesc Romanesc de Bucovina (1)";
 
         textClasses inputClass = classifier.classify(input);
-        assertEquals(textClasses.BREED_NAME_PL, inputClass);
+        assertEquals(textClasses.BREED_NAME, inputClass);
     }
 
     @Test

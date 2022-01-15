@@ -9,6 +9,7 @@ public class RingFromClassifiedText {
     public RingFromClassifiedText(List<TextLine> textLines) {
         this.textLines = textLines;
         setJudge();
+        setRingNumber();
     }
 
     public Ring build() {
@@ -17,5 +18,9 @@ public class RingFromClassifiedText {
 
     protected void setJudge() {
         ringBuilder.judge(new JudgeNameExtractor().extract(textLines));
+    }
+
+    protected void setRingNumber() {
+        ringBuilder.ringNumber(new RingNumberExtractor().extract(textLines));
     }
 }

@@ -1,6 +1,5 @@
 package com.clockworkshepherd.client_finder.JudgingPlan;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ class RingHeaderIteratorTest {
         List<TextLine> input = Arrays.asList(
                new TextLine("Ring: 1 Hala: 3 Sobota / Saturday Razem: 79", textClasses.RING_HEADER),
                new TextLine("Sędzia: Jarosław Grunt (PL)", textClasses.JUDGE),
-               new TextLine("Cao Fila de Sao Miguel    (1)", textClasses.BREED_NAME_PL),
+               new TextLine("Cao Fila de Sao Miguel    (1)", textClasses.BREED_NAME),
                new TextLine("Ring: 2 Hala: 3 Sobota / Saturday Razem: 49", textClasses.RING_HEADER),
                new TextLine("10.00", textClasses.BREED_JUDGING_START_TIME)
         );

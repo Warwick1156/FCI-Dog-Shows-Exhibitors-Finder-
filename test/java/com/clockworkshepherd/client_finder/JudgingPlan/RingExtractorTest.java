@@ -1,19 +1,29 @@
 package com.clockworkshepherd.client_finder.JudgingPlan;
 
-import com.clockworkshepherd.client_finder.Document;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RingExtractorTest {
+
+    List<String> getListWithSingleRing() {
+        return Arrays.asList(
+                "Ring: 1 Hala: 3 Sobota / Saturday Razem: 79",
+                "Sędzia: Jarosław Grunt (PL)",
+                "10.00",
+                "Cao Fila de Sao Miguel    (1)",
+                "Saint Miguel Cattle Dog",
+                "Psy - Males",
+                "Klasa młodzieży - Junior Class 1 607)"
+        );
+    }
 
     @Test
     void extractReturnType() throws IOException {
@@ -23,15 +33,7 @@ class RingExtractorTest {
 
     @Test
     void extractReturnedRingHasRightJudge() throws IOException {
-        List<String> rows = Arrays.asList(
-                "Ring: 1 Hala: 3 Sobota / Saturday Razem: 79",
-                "Sędzia: Jarosław Grunt (PL)",
-                "10.00",
-                "Cao Fila de Sao Miguel    (1)",
-                "Saint Miguel Cattle Dog",
-                "Psy - Males",
-                "Klasa młodzieży - Junior Class 1 607)"
-        );
+        List<String> rows = getListWithSingleRing();
 
         RingExtractor extractor = new RingExtractor();
         List<Ring> ringList = extractor.extract(rows);
@@ -43,16 +45,21 @@ class RingExtractorTest {
     }
 
     @Test
+    void extractReturnedRingHasRightRingNumber() throws IOException {
+        List<String> rows = getListWithSingleRing();
+
+        RingExtractor extractor = new RingExtractor();
+        List<Ring> ringList = extractor.extract(rows);
+
+        int expected = 1;
+        int actual = ringList.get(0).ringNo;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void classifyDocumentRows() throws IOException {
-        List<String> rows = Arrays.asList(
-                "Ring: 1 Hala: 3 Sobota / Saturday Razem: 79",
-                "Sędzia: Jarosław Grunt (PL)",
-                "10.00",
-                "Cao Fila de Sao Miguel    (1)",
-                "Saint Miguel Cattle Dog",
-                "Psy - Males",
-                "Klasa młodzieży - Junior Class 1 607)"
-        );
+        List<String> rows = getListWithSingleRing();
 
         RingExtractor extractor = new RingExtractor();
         List<TextLine> actual = extractor.classify(rows);
@@ -62,7 +69,7 @@ class RingExtractorTest {
                 textClasses.RING_HEADER,
                 textClasses.JUDGE,
                 textClasses.BREED_JUDGING_START_TIME,
-                textClasses.BREED_NAME_PL,
+                textClasses.BREED_NAME,
                 textClasses.UNDEFINED,
                 textClasses.SEX,
                 textClasses.COMPETITION
